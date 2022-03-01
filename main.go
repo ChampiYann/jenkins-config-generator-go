@@ -51,11 +51,14 @@ func main() {
 		nodeName := projectNameDashed + "-" + strconv.Itoa(i+1)
 		node := jcasc.Node{Permanent: &jcasc.Permanent{Name: &nodeName}}
 		nodeAuthorizationMatrixInheritanceStrategy := jcasc.InheritingGlobal
-		saPermission := []string{
+		nodePermissions := []string{
 			"USER:Agent/Build:" + saUserName,
-			"USER:Agent/*:" + adminUserMail,
+			"USER:Agent/Connect:" + adminUserMail,
+			"USER:Agent/Build:" + adminUserMail,
+			"USER:Agent/Configure:" + adminUserMail,
+			"USER:Agent/Disconnect:" + adminUserMail,
 		}
-		nodeProperty := jcasc.PermanentNodeProperty{AuthorizationMatrix: &jcasc.AuthorizationMatrixNodeProperty{InheritanceStrategy: &nodeAuthorizationMatrixInheritanceStrategy, Permissions: saPermission}}
+		nodeProperty := jcasc.PermanentNodeProperty{AuthorizationMatrix: &jcasc.AuthorizationMatrixNodeProperty{InheritanceStrategy: &nodeAuthorizationMatrixInheritanceStrategy, Permissions: nodePermissions}}
 		node.Permanent.NodeProperties = append(node.Permanent.NodeProperties, nodeProperty)
 
 		config.Jenkins.Nodes = append(config.Jenkins.Nodes, node)

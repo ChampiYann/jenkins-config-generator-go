@@ -7,7 +7,10 @@ jenkins:
           inheritanceStrategy: inheritingGlobal
           permissions:
           - USER:Agent/Build:Project-4-Awesome-sa-build-1
-          - USER:Agent/*:hello-world.admin@example.org
+          - USER:Agent/Connect:hello-world.admin@example.org
+          - USER:Agent/Build:hello-world.admin@example.org
+          - USER:Agent/Configure:hello-world.admin@example.org
+          - USER:Agent/Disconnect:hello-world.admin@example.org
   - permanent:
       name: Project-4-Awesome-2
       nodeProperties:
@@ -15,7 +18,10 @@ jenkins:
           inheritanceStrategy: inheritingGlobal
           permissions:
           - USER:Agent/Build:Project-4-Awesome-sa-build-1
-          - USER:Agent/*:hello-world.admin@example.org
+          - USER:Agent/Connect:hello-world.admin@example.org
+          - USER:Agent/Build:hello-world.admin@example.org
+          - USER:Agent/Configure:hello-world.admin@example.org
+          - USER:Agent/Disconnect:hello-world.admin@example.org
   securityRealm:
     local:
       users:
