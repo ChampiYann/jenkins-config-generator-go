@@ -22,7 +22,7 @@ func main() {
 
 	// Format input
 	projectNameDashed := strings.Replace(projectName, " ", "-", -1)
-	projectNameCaps := strings.ToUpper(strings.Replace(projectName, " ", "_", -1))
+	// projectNameCaps := strings.ToUpper(strings.Replace(projectName, " ", "_", -1))
 
 	// Create configuration object
 	config := new(jcasc.JCasC)
@@ -33,7 +33,7 @@ func main() {
 	config.Jobs = append(config.Jobs, job)
 
 	// Create admin user
-	adminPassword := "${" + projectNameCaps + "_PASSWD}"
+	adminPassword := ""
 	adminUser := jcasc.User{Name: &adminUserMail, ID: &adminUserMail, Password: &adminPassword}
 	mailerProperty := jcasc.UserProperty{Mailer: &jcasc.Mailer{EmailAddress: &adminUserMail}}
 	adminUser.Properties = append(adminUser.Properties, mailerProperty)
@@ -41,9 +41,14 @@ func main() {
 	config.Jenkins = &jcasc.JenkinsClass{SecurityRealm: &jcasc.SecurityRealm{Local: &jcasc.Local{}}}
 	config.Jenkins.SecurityRealm.Local.Users = append(config.Jenkins.SecurityRealm.Local.Users, adminUser)
 
+	globalPermissions := []string{
+		"USER:Overall/Read:" + adminUserMail,
+	}
+	config.Jenkins.AuthorizationStrategy = &jcasc.AuthorizationStrategy{ProjectMatrix: &jcasc.AuthorizationMatrixNodeProperty{Permissions: globalPermissions}}
+
 	// Create SA
 	saUserName := projectNameDashed + "-sa-build-1"
-	saPassword := "helloworld"
+	saPassword := ""
 	saUser := jcasc.User{Name: &saUserName, ID: &saUserName, Password: &saPassword}
 	config.Jenkins.SecurityRealm.Local.Users = append(config.Jenkins.SecurityRealm.Local.Users, saUser)
 

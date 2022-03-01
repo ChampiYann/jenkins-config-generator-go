@@ -37,7 +37,7 @@ type Job struct {
 
 type JenkinsClass struct {
 	// AgentProtocols                 *string                      `json:"agentProtocols,omitempty"`
-	// AuthorizationStrategy          *FluffyAuthorizationStrategy `json:"authorizationStrategy,omitempty"`
+	AuthorizationStrategy *AuthorizationStrategy `json:"authorizationStrategy,omitempty"`
 	// Clouds                         []Cloud                      `json:"clouds,omitempty"`
 	// CrumbIssuer                    *FluffyCrumbIssuer           `json:"crumbIssuer,omitempty"`
 	// DisabledAdministrativeMonitors *string                      `json:"disabledAdministrativeMonitors,omitempty"`
@@ -66,6 +66,14 @@ type JenkinsClass struct {
 	// UpdateCenter                   *PurpleUpdateCenter          `json:"updateCenter,omitempty"`
 	// Views                          []ViewElement                `json:"views,omitempty"`
 	// ViewsTabBar                    *PurpleViewsTabBar           `json:"viewsTabBar,omitempty"`
+}
+
+type AuthorizationStrategy struct {
+	ProjectMatrix              *AuthorizationMatrixNodeProperty `json:"projectMatrix,omitempty"`
+	GlobalMatrix               interface{}                      `json:"globalMatrix,omitempty"`
+	Legacy                     interface{}                      `json:"legacy,omitempty"`
+	LoggedInUsersCanDoAnything interface{}                      `json:"loggedInUsersCanDoAnything,omitempty"`
+	Unsecured                  interface{}                      `json:"unsecured,omitempty"`
 }
 
 type SecurityRealm struct {

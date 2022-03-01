@@ -1,4 +1,8 @@
 jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      - USER:Overall/Read:hello-world.admin@example.org
   nodes:
   - permanent:
       name: Project-4-Awesome-1
@@ -27,12 +31,12 @@ jenkins:
       users:
       - id: hello-world.admin@example.org
         name: hello-world.admin@example.org
-        password: ${PROJECT_4_AWESOME_PASSWD}
+        password: ""
         properties:
         - mailer:
             emailAddress: hello-world.admin@example.org
       - id: Project-4-Awesome-sa-build-1
         name: Project-4-Awesome-sa-build-1
-        password: helloworld
+        password: ""
 jobs:
 - script: folder('Project 4 Awesome')
