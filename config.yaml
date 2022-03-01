@@ -1,0 +1,31 @@
+jenkins:
+  nodes:
+  - permanent:
+      name: Project-4-Awesome-1
+      nodeProperties:
+      - authorizationMatrix:
+          inheritanceStrategy: inheritingGlobal
+          permissions:
+          - USER:Agent/Build:Project-4-Awesome-sa-build-1
+          - USER:Agent/*:hello-world.admin@example.org
+  - permanent:
+      name: Project-4-Awesome-2
+      nodeProperties:
+      - authorizationMatrix:
+          inheritanceStrategy: inheritingGlobal
+          permissions:
+          - USER:Agent/Build:Project-4-Awesome-sa-build-1
+          - USER:Agent/*:hello-world.admin@example.org
+  securityRealm:
+    local:
+      users:
+      - id: hello-world.admin@example.org
+        name: hello-world.admin@example.org
+        password: ${HELLO_PASSWD}
+        properties:
+        - mailer:
+            emailAddress: hello-world.admin@example.org
+      - id: Project-4-Awesome-sa-build-1
+        name: Project-4-Awesome-sa-build-1
+jobs:
+- script: folder('Project 4 Awesome')
