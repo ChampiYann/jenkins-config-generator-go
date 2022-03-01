@@ -21,7 +21,7 @@ jenkins:
       users:
       - id: hello-world.admin@example.org
         name: hello-world.admin@example.org
-        password: ${HELLO_PASSWD}
+        password: ${PROJECT_4_AWESOME_PASSWD}
         properties:
         - mailer:
             emailAddress: hello-world.admin@example.org

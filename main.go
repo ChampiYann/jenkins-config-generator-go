@@ -22,6 +22,7 @@ func main() {
 
 	// Format input
 	projectNameDashed := strings.Replace(projectName, " ", "-", -1)
+	projectNameCaps := strings.ToUpper(strings.Replace(projectName, " ", "_", -1))
 
 	// Create configuration object
 	config := new(jcasc.JCasC)
@@ -32,7 +33,7 @@ func main() {
 	config.Jobs = append(config.Jobs, job)
 
 	// Create admin user
-	adminPassword := "${HELLO_PASSWD}"
+	adminPassword := "${" + projectNameCaps + "_PASSWD}"
 	adminUser := jcasc.User{Name: &adminUserMail, ID: &adminUserMail, Password: &adminPassword}
 	mailerProperty := jcasc.UserProperty{Mailer: &jcasc.Mailer{EmailAddress: &adminUserMail}}
 	adminUser.Properties = append(adminUser.Properties, mailerProperty)
