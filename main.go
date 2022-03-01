@@ -43,7 +43,8 @@ func main() {
 
 	// Create SA
 	saUserName := projectNameDashed + "-sa-build-1"
-	saUser := jcasc.User{Name: &saUserName, ID: &saUserName}
+	saPassword := "helloworld"
+	saUser := jcasc.User{Name: &saUserName, ID: &saUserName, Password: &saPassword}
 	config.Jenkins.SecurityRealm.Local.Users = append(config.Jenkins.SecurityRealm.Local.Users, saUser)
 
 	// Add Node(s)

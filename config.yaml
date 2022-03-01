@@ -33,5 +33,6 @@ jenkins:
             emailAddress: hello-world.admin@example.org
       - id: Project-4-Awesome-sa-build-1
         name: Project-4-Awesome-sa-build-1
+        password: helloworld
 jobs:
 - script: folder('Project 4 Awesome')
