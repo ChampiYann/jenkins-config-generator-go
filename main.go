@@ -75,6 +75,6 @@ func main() {
 		fmt.Println(string(bytes))
 	}
 
-	err = os.WriteFile("config.yaml", bytes, 0644)
+	err = os.WriteFile(projectNameDashed+".yaml", bytes, 0644)
 	check(err)
 }
