@@ -18,6 +18,7 @@ jenkins:
     #   usernameCaseConversion: "none"
 
     local:
+      users:
 
 security:
   queueItemAuthenticator:
