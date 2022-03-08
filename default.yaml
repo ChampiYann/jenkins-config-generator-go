@@ -19,6 +19,11 @@ jenkins:
 
     local:
       users:
+      - id: yannr
+        name: Yann Rosema
+        properties:
+        - mailer:
+            emailAddress: yann.rosema@cegeka.com
 
 security:
   queueItemAuthenticator:
